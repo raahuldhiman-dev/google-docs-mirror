@@ -8,7 +8,7 @@
 | AI workflow note | `AI_WORKFLOW.md` |
 | This manifest | `SUBMISSION.md` |
 | Live product URL | https://google-docs-mirror.vercel.app (health check: https://google-docs-mirror.vercel.app/api/health) |
-| Walkthrough video link | `walkthrough.txt` |
+| Walkthrough video (4 min) | https://youtu.be/fB2DWJOzZsI (also in `walkthrough.txt`) |
 | Test accounts | alice@ajaia.test, bob@ajaia.test, carol@ajaia.test (click to sign in, no passwords) |
 | Screenshots | `screenshots/`: 18 images, indexed below |
 

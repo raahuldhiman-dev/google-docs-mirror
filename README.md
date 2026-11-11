@@ -2,7 +2,7 @@
 
 A small full-stack app inspired by Google Docs: create and edit rich-text documents, import files, and share documents with other users.
 
-**Live demo:** https://google-docs-mirror.vercel.app  |  **Walkthrough video:** see `walkthrough.txt`
+**Live demo:** https://google-docs-mirror.vercel.app  |  **Walkthrough video:** https://youtu.be/fB2DWJOzZsI
 
 ## Test accounts (mocked sign-in, no passwords)
 
