@@ -233,3 +233,14 @@ describe("schema migration", () => {
     expect((await getMeta(old, "u_alice", "d_old")).updatedByName).toBe("Alice Johnson");
   });
 });
+
+describe("concurrent startup", () => {
+  it("survives several initDb calls racing on a fresh database (serverless cold starts)", async () => {
+    const fresh = newClient(":memory:");
+    await expect(Promise.all([initDb(fresh), initDb(fresh), initDb(fresh), initDb(fresh)])).resolves.toBeDefined();
+    const docs = await fresh.execute("SELECT COUNT(*) AS n FROM documents");
+    const users = await fresh.execute("SELECT COUNT(*) AS n FROM users");
+    expect(Number(docs.rows[0].n)).toBe(1);
+    expect(Number(users.rows[0].n)).toBe(3);
+  });
+});

@@ -83,7 +83,12 @@ export async function initDb(client: Client) {
   // Databases created before "last edited by" existed need the column added in place.
   const cols = await client.execute("PRAGMA table_info(documents)");
   if (!cols.rows.some((c) => c.name === "updated_by")) {
-    await client.execute("ALTER TABLE documents ADD COLUMN updated_by TEXT REFERENCES users(id)");
+    try {
+      await client.execute("ALTER TABLE documents ADD COLUMN updated_by TEXT REFERENCES users(id)");
+    } catch (e) {
+      // Another cold start may have added it between our check and now.
+      if (!/duplicate column/i.test(String((e as Error).message))) throw e;
+    }
     await client.execute("UPDATE documents SET updated_by = owner_id WHERE updated_by IS NULL");
   }
   for (const u of SEED_USERS) {
@@ -96,7 +101,8 @@ export async function initDb(client: Client) {
   if (Number(existing.rows[0].n) === 0) {
     const now = Date.now();
     await client.execute({
-      sql: "INSERT INTO documents (id, owner_id, title, content_json, created_at, updated_at, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      // OR IGNORE: several serverless instances can start at once and all see an empty table.
+      sql: "INSERT OR IGNORE INTO documents (id, owner_id, title, content_json, created_at, updated_at, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?)",
       args: ["d_welcome", "u_alice", "Welcome to Ajaia Docs", welcomeContent(), now, now, "u_alice"],
     });
   }
