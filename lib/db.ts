@@ -65,6 +65,12 @@ export function welcomeContent() {
 
 export function newClient(url?: string, authToken?: string): Client {
   const target = url || process.env.TURSO_URL || "file:data/app.db";
+  // Serverless disks are read-only/ephemeral: fail with an actionable message instead of a cryptic EROFS.
+  if (process.env.VERCEL && target.startsWith("file:")) {
+    throw new Error(
+      "TURSO_URL is not set. In Vercel go to Settings > Environment Variables, add TURSO_URL, TURSO_TOKEN and SESSION_SECRET, then redeploy.",
+    );
+  }
   // A fresh clone has no data/ folder; create it so the local SQLite file can be opened.
   if (target.startsWith("file:") && !target.includes(":memory:")) {
     mkdirSync(dirname(target.slice("file:".length)), { recursive: true });
