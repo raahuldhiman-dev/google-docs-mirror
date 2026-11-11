@@ -195,24 +195,26 @@ export default function Dashboard({ user }: { user: User }) {
             <tbody>
               {docs.map((d) => (
                 <tr key={d.id} onDoubleClick={() => router.push(`/doc/${d.id}`)}>
-                  <td className="gd-name">
-                    <DocLogo size={22} />
-                    {renaming === d.id ? (
-                      <input
-                        className="rename-input"
-                        autoFocus
-                        defaultValue={d.title}
-                        maxLength={200}
-                        aria-label="Document title"
-                        onBlur={(e) => rename(d, e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") e.currentTarget.blur();
-                          if (e.key === "Escape") setRenaming(null);
-                        }}
-                      />
-                    ) : (
-                      <Link href={`/doc/${d.id}`}>{d.title}</Link>
-                    )}
+                  <td>
+                    <div className="gd-name">
+                      <DocLogo size={22} />
+                      {renaming === d.id ? (
+                        <input
+                          className="rename-input"
+                          autoFocus
+                          defaultValue={d.title}
+                          maxLength={200}
+                          aria-label="Document title"
+                          onBlur={(e) => rename(d, e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") e.currentTarget.blur();
+                            if (e.key === "Escape") setRenaming(null);
+                          }}
+                        />
+                      ) : (
+                        <Link href={`/doc/${d.id}`}>{d.title}</Link>
+                      )}
+                    </div>
                   </td>
                   <td>{d.role === "owner" ? "me" : d.ownerName}</td>
                   <td>

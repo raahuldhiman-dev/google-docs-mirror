@@ -184,3 +184,12 @@ input[type="email"]:focus { border-color: var(--accent); outline: 1px solid var(
 .gd-lastedit { font-size: 12px; color: var(--muted); white-space: nowrap; }
 .banner-remote { background: #e8f0fe; border-bottom-color: #c6dafc; }
 @media (max-width: 860px) { .gd-lastedit { display: none; } }
+
+/* Phone widths: let the header wrap so the save status sits under the title instead of overlapping it. */
+@media (max-width: 640px) {
+  .gd-editor-head { flex-wrap: wrap; row-gap: 0; }
+  .gd-title-block { flex: 1; min-width: 0; }
+  .gd-title-input { width: 100%; }
+  .gd-share-btn { padding: 8px 14px 8px 12px; }
+  .gd-editor-head .save-status { order: 10; flex-basis: 100%; padding-left: 66px; font-size: 11px; height: 16px; }
+}
