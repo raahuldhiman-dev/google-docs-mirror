@@ -9,6 +9,7 @@
 - **Boilerplate and glue.** Route handlers, zod schemas, the Tiptap toolbar wiring, the share dialog and CSS were fast to generate and easy to review.
 - **Test and verification loops.** It wrote the Vitest suite and a Playwright-style browser script that drove the real flow (create → format → reload → share → switch user → view-only), which would have taken me much longer by hand.
 - **Docs.** First drafts of README / architecture note.
+- **Walkthrough video.** The screen capture was recorded by a scripted headless browser run against the live site (Claude Code wrote the script, so the cursor movement is automated and the typing is scripted). The captions follow my written script, and the narration is my own voice, recorded over the capture.
 
 ## What I changed or rejected
 These are real corrections made during the build:
