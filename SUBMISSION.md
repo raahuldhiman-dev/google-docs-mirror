@@ -15,7 +15,7 @@
 ## Status
 **Stretch goals included:** Editor/Viewer roles; Markdown/text export and Save-as-PDF; collaboration indicators (last edited by, "edited by someone else" banner).
 
-**Working end to end:** create / rename / edit / autosave / reopen; bold, italic, underline, H1-H3, bullet and numbered lists; `.txt` / `.md` / `.docx` import into a new document; sharing with Can edit / View only roles, change and revoke; owned vs shared listing with badges; persistence across refresh; validation and error handling; 15 automated tests.
+**Working end to end:** create / rename / edit / autosave / reopen; bold, italic, underline, H1-H3, bullet and numbered lists; `.txt` / `.md` / `.docx` import into a new document; sharing with Can edit / View only roles, change and revoke; owned vs shared listing with badges; persistence across refresh; validation and error handling; 16 automated tests.
 
 **Incomplete / deliberately out of scope:** real authentication, true real-time collaboration (changes by others are detected and flagged within ~5 s, but not merged; last-write-wins), version history, comments, server-side PDF (the PDF option uses the browser print dialog), attaching original uploads.
 

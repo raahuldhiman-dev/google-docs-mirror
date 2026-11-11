@@ -22,7 +22,7 @@ These are real corrections made during the build:
 - **Scope.** I declined adding Yjs real-time sync, version history and PDF export even though the model could generate them quickly: they'd have enlarged the surface to verify and jeopardised the core flows. I added only stretch items that were cheap to verify: Markdown/text export (a pure function), PDF via the browser print dialog, and polling-based "edited by someone else" detection. I deliberately did not call the latter real-time collaboration, because it detects conflicts but doesn't merge them.
 
 ## How I verified correctness and quality
-- **Automated:** `npm test` (15 tests) against an in-memory database covering the access matrix, sharing upsert/revoke, listing, validation and import conversion. Type-check (`tsc --noEmit`) and a production `next build` are clean.
+- **Automated:** `npm test` (16 tests) against an in-memory database covering the access matrix, sharing upsert/revoke, listing, validation and import conversion. Type-check (`tsc --noEmit`) and a production `next build` are clean.
 - **API smoke test with curl** against the production build using two sessions: unauthenticated → 401, no-access → 404, viewer write → 403, bad body → 400, unsupported upload → 400.
 - **Browser check** (headless Chromium script, plus screenshots I looked at): formatting persisted across reload, autosave indicator reached "All changes saved", Bob saw the doc under "Shared with me" as view-only with no toolbar and a non-editable body, and there were no console errors.
 - **Two-user collaboration check:** a scripted run with two separate browser sessions confirmed Alice sees no banner for her own saves, gets a banner within one poll after Bob's edit, and sees Bob's text after reloading.

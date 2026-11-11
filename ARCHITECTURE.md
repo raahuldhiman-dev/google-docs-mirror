@@ -64,4 +64,4 @@ Every save records `updated_by`. An open editor polls a tiny `GET /api/documents
 | E2E test suite | I tested the UI flows with a scripted browser run during development, but the committed automated tests cover the server logic where bugs are most costly |
 
 ## Testing
-`npm test` runs 15 tests against an in-memory database: role resolution, the owner/editor/viewer/none permission matrix, 404-vs-403 behaviour, owned-vs-shared listings, share upsert/revoke/self-share/unknown-email, cascade on delete, content round-trip, schema validation and import conversion (md, txt, unsupported, corrupt) Markdown/plain-text export, real `.docx` import, last-edited tracking and the in-place schema migration.
+`npm test` runs 16 tests against an in-memory database: role resolution, the owner/editor/viewer/none permission matrix, 404-vs-403 behaviour, owned-vs-shared listings, share upsert/revoke/self-share/unknown-email, cascade on delete, content round-trip, schema validation and import conversion (md, txt, unsupported, corrupt), Markdown/plain-text export, real `.docx` import, last-edited tracking, the in-place schema migration and a concurrent cold-start race.
