@@ -2,7 +2,7 @@
 
 A small full-stack app inspired by Google Docs: create and edit rich-text documents, import files, and share documents with other users.
 
-**Live demo:** _<paste deployed URL>_  |  **Walkthrough video:** see `walkthrough.txt`
+**Live demo:** https://google-docs-mirror.vercel.app  |  **Walkthrough video:** see `walkthrough.txt`
 
 ## Test accounts (mocked sign-in, no passwords)
 
@@ -55,11 +55,14 @@ Optional env vars (see `.env.example`):
 
 ## Deployment
 
-Intended deployment: Vercel plus a free Turso database (serverless platforms have no persistent disk, so a hosted DB is required). Steps:
+Deployed on Vercel with a free Turso database (serverless platforms have no persistent disk, so a hosted DB is required). To reproduce:
 
 1. `turso db create ajaia-docs` then `turso db show ajaia-docs --url` and `turso db tokens create ajaia-docs`
 2. Import the repo in Vercel and set `TURSO_URL`, `TURSO_TOKEN`, `SESSION_SECRET`
 3. Deploy. The schema and seed users are created on first request.
+4. Check `/api/health`: it reports whether each setting is present (never the values) and whether the database answers, e.g. `{"ok":true,"users":3,...}`.
+
+Note: the first request after an idle period can be slower while the serverless function starts and connects to the database.
 
 ## Known limitations
 
